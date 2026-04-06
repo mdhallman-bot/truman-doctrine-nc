@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Truman Doctrine — Newcomer Edition</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+:root {
+  --navy: #1a2744;
+  --navy2: #253660;
+  --red: #b91c1c;
+  --gold: #c8a444;
+  --cream: #f4efe6;
+  --paper: #faf8f3;
+  --ink: #1c1a15;
+  --muted: #6b6357;
+  --border: #d8d2c6;
+  --green: #166534;
+  --green-light: #dcfce7;
+  --green-mid: #86efac;
+  --red-light: #fee2e2;
+  --blue-light: #dbeafe;
+  --blue: #1e40af;
+  --highlight-yellow: #fef08a;
+  --highlight-border: #ca8a04;
+  --purple-light: #f3e8ff;
+  --purple: #7c3aed;
+  --orange: #ea580c;
+  --orange-light: #ffedd5;
+  --teal: #0f766e;
+  --teal-light: #ccfbf1;
+  --spanish-bg: #f0fdf4;
+  --spanish-border: #86efac;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--navy);
+  color: white;
+  padding: 28px 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+.site-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg,transparent,transparent 48px,rgba(255,255,255,.02) 48px,rgba(255,255,255,.02) 49px);
+  pointer-events: none;
+}
+.header-inner { position: relative; }
+.header-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--orange);
+  color: white;
+  font-size: .72rem; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px;
+  margin-bottom: 10px;
+}
+.header-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900; line-height: 1.1;
+}
+.header-subtitle {
+  font-size: .9rem; color: rgba(255,255,255,.6);
+  margin-top: 4px; font-style: italic;
+}
+.header-rule { width: 48px; height: 3px; background: var(--red); margin: 12px 0 6px; }
+.bilingual-tag {
+  font-size: .8rem; color: var(--gold); font-weight: 700;
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* progress */
+.progress-wrap { padding: 14px 40px 18px; position: relative; }
+.progress-track { background: rgba(255,255,255,.1); border-radius: 4px; height: 7px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--orange)); border-radius: 4px; transition: width .4s; width: 0%; }
+.progress-text { font-family: 'IBM Plex Mono', monospace; font-size: .68rem; color: rgba(255,255,255,.5); margin-top: 5px; }
+
+/* student bar */
+.student-bar { background: rgba(0,0,0,.25); padding: 12px 40px 16px; display: flex; gap: 18px; flex-wrap: wrap; }
+.student-bar label { font-family: 'IBM Plex Mono', monospace; font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; color: var(--gold); display: block; margin-bottom: 3px; }
+.student-bar input { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); border-radius: 4px; color: white; padding: 6px 10px; font-family: 'Nunito', sans-serif; font-size: .9rem; width: 190px; }
+.student-bar input::placeholder { color: rgba(255,255,255,.3); }
+.student-bar input:focus { outline: none; border-color: var(--gold); }
+
+/* ── MAIN ── */
+.main { max-width: 960px; margin: 0 auto; padding: 40px 20px 72px; }
+
+/* context */
+.context-box {
+  border-radius: 10px; overflow: hidden;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+.context-en {
+  background: var(--navy);
+  color: white;
+  padding: 22px 28px;
+}
+.context-es {
+  background: var(--spanish-bg);
+  border: 1px solid var(--spanish-border);
+  border-top: none;
+  padding: 22px 28px;
+}
+.context-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .65rem; text-transform: uppercase;
+  letter-spacing: .14em; margin-bottom: 8px;
+}
+.context-en .context-eyebrow { color: var(--gold); }
+.context-es .context-eyebrow { color: var(--teal); }
+.context-en p { font-size: .93rem; line-height: 1.75; color: rgba(255,255,255,.86); }
+.context-es p { font-size: .93rem; line-height: 1.75; color: #134e4a; }
+
+/* ── SECTION CARD ── */
+.sec-card {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-bottom: 40px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+}
+.sec-head {
+  background: var(--navy);
+  color: white;
+  padding: 16px 26px;
+  display: flex; align-items: center; gap: 12px;
+}
+.sec-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold); background: rgba(200,164,68,.15);
+  border: 1px solid rgba(200,164,68,.3); border-radius: 3px;
+  padding: 3px 8px; white-space: nowrap; flex-shrink: 0;
+}
+.sec-head h3 { font-family: 'Playfair Display', serif; font-size: 1.08rem; font-weight: 700; }
+.sec-head .sec-es { font-size: .82rem; color: rgba(255,255,255,.55); font-style: italic; margin-left: 4px; }
+.completion-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  display: inline-block; margin-left: 8px;
+  vertical-align: middle; transition: background .3s; flex-shrink: 0;
+}
+.completion-dot.done { background: var(--green-mid); }
+.sec-body { padding: 26px; }
+
+/* ── VOCAB ── */
+.vocab-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .65rem; text-transform: uppercase;
+  letter-spacing: .13em; color: var(--muted);
+  margin-bottom: 12px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 9px; margin-bottom: 20px;
+}
+.vocab-item {
+  background: var(--blue-light);
+  border: 1px solid #bfdbfe;
+  border-radius: 8px; padding: 10px 13px;
+}
+.vocab-word { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: .8rem; color: var(--blue); margin-bottom: 2px; }
+.vocab-en { font-size: .78rem; color: var(--ink); line-height: 1.4; margin-bottom: 3px; }
+.vocab-es { font-size: .78rem; color: var(--teal); font-style: italic; line-height: 1.4; border-top: 1px solid #bfdbfe; margin-top: 4px; padding-top: 4px; }
+
+/* ── DRAG/DROP ── */
+.match-container {
+  background: #f8f7f4; border: 1px solid var(--border);
+  border-radius: 8px; padding: 18px; margin-bottom: 24px;
+}
+.match-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: .65rem; text-transform: uppercase; letter-spacing: .13em; color: var(--muted); margin-bottom: 14px; }
+.match-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 580px) { .match-layout { grid-template-columns: 1fr; } }
+.match-col-label { font-family: 'IBM Plex Mono', monospace; font-size: .62rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 7px; }
+.word-bank { display: flex; flex-direction: column; gap: 7px; }
+.drag-word {
+  background: var(--navy); color: white;
+  font-family: 'Nunito', sans-serif; font-size: .85rem; font-weight: 700;
+  padding: 9px 13px; border-radius: 6px;
+  cursor: grab; user-select: none;
+  transition: opacity .2s, transform .15s;
+  border: 2px solid transparent;
+}
+.drag-word:active { cursor: grabbing; opacity: .7; transform: scale(.97); }
+.drag-word.dragging { opacity: .35; }
+.drag-word.matched-correct { background: var(--green); border-color: var(--green); cursor: default; }
+.drag-word.matched-wrong { background: var(--red); animation: shake .3s; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+.def-slots { display: flex; flex-direction: column; gap: 7px; }
+.def-slot {
+  background: white; border: 2px dashed var(--border);
+  border-radius: 6px; padding: 9px 12px;
+  min-height: 48px; font-size: .82rem; color: var(--ink);
+  line-height: 1.4; transition: border-color .2s, background .2s;
+}
+.def-slot .def-slot-es { font-size: .75rem; color: var(--teal); font-style: italic; margin-top: 3px; }
+.def-slot.drag-over { border-color: var(--navy); background: #f0f4ff; }
+.def-slot.correct { border-color: var(--green); background: var(--green-light); border-style: solid; }
+.def-slot.wrong { border-color: var(--red); background: var(--red-light); border-style: solid; }
+.slot-word-label { font-family: 'IBM Plex Mono', monospace; font-size: .65rem; color: var(--green); font-weight: 600; display: block; margin-bottom: 2px; }
+.slot-word-label.wrong-label { color: var(--red); }
+.match-reset-btn {
+  font-family: 'Nunito', sans-serif; font-size: .78rem; font-weight: 700;
+  padding: 6px 14px; border-radius: 5px;
+  border: 1.5px solid var(--border);
+  background: white; color: var(--muted);
+  cursor: pointer; margin-top: 12px;
+  transition: border-color .2s, color .2s;
+}
+.match-reset-btn:hover { border-color: var(--navy); color: var(--navy); }
+
+/* ── PASSAGE ── */
+.passage-wrap { margin-bottom: 20px; }
+.passage-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: .65rem; text-transform: uppercase; letter-spacing: .13em; color: var(--muted); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+.passage-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .passage-cols { grid-template-columns: 1fr; } }
+
+.passage-en {
+  border-left: 4px solid var(--red);
+  background: #fdf9f3; padding: 18px 20px;
+  border-radius: 0 7px 7px 0;
+  font-size: .95rem; line-height: 1.85; color: #2d2620;
+  position: relative;
+}
+.passage-en.section1-pre { font-style: italic; }
+.passage-es-box {
+  border-left: 4px solid var(--teal);
+  background: var(--spanish-bg); padding: 18px 20px;
+  border-radius: 0 7px 7px 0;
+  font-size: .95rem; line-height: 1.85; color: #134e4a;
+  font-style: italic; position: relative;
+}
+.passage-lang-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .6rem; text-transform: uppercase;
+  letter-spacing: .12em; font-style: normal;
+  display: inline-block; padding: 2px 7px;
+  border-radius: 3px; margin-bottom: 8px;
+}
+.en-tag { background: #fee2e2; color: var(--red); }
+.es-tag { background: var(--teal-light); color: var(--teal); }
+
+/* Pre-highlighted (Section 1) */
+.pre-highlight {
+  background: var(--highlight-yellow);
+  border-bottom: 2px solid var(--highlight-border);
+  border-radius: 2px; padding: 0 2px;
+}
+.highlight-legend {
+  margin-top: 10px; font-size: .78rem; color: var(--muted);
+  display: flex; align-items: center; gap: 7px; font-style: normal;
+  grid-column: 1 / -1;
+}
+.legend-swatch { display: inline-block; width: 16px; height: 9px; background: var(--highlight-yellow); border-bottom: 2px solid var(--highlight-border); border-radius: 2px; }
+
+/* Clickable word highlighting */
+.passage-clickable {
+  border-left: 4px solid var(--gold);
+  background: #fdf9f3; padding: 18px 20px;
+  border-radius: 0 7px 7px 0;
+  font-size: .95rem; line-height: 2; color: #2d2620;
+  font-style: italic; position: relative;
+}
+.click-word {
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 1px 2px;
+  transition: background .15s;
+  display: inline;
+}
+.click-word:hover { background: rgba(251,191,36,.35); }
+.click-word.highlighted {
+  background: var(--highlight-yellow);
+  border-bottom: 2px solid var(--highlight-border);
+}
+.click-instruction {
+  font-size: .8rem; color: var(--muted); font-style: normal;
+  margin-top: 8px; display: flex; align-items: center; gap: 6px;
+}
+.click-instruction::before { content: '👆'; font-style: normal; }
+
+/* justification */
+.justification-block {
+  background: var(--purple-light); border: 1px solid #e9d5ff;
+  border-radius: 7px; padding: 15px 17px; margin-top: 13px;
+}
+.justification-block h4 {
+  font-family: 'IBM Plex Mono', monospace; font-size: .67rem;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--purple); margin-bottom: 5px;
+}
+.justification-block .es-prompt {
+  font-size: .82rem; color: #4c1d95; margin-bottom: 8px;
+  line-height: 1.5; font-style: italic;
+}
+
+/* ── MC ── */
+.questions-eyebrow {
+  font-family: 'IBM Plex Mono', monospace; font-size: .65rem;
+  text-transform: uppercase; letter-spacing: .13em; color: var(--muted);
+  margin: 20px 0 11px; padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+.mc-q { margin-bottom: 20px; }
+.mc-q p { font-weight: 700; font-size: .94rem; margin-bottom: 4px; line-height: 1.5; }
+.mc-q .mc-q-es { font-size: .86rem; color: var(--teal); font-style: italic; margin-bottom: 10px; line-height: 1.5; }
+.mc-opts { display: flex; flex-direction: column; gap: 7px; }
+.mc-opt {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 9px 13px; border-radius: 6px;
+  border: 1.5px solid var(--border);
+  cursor: pointer; transition: border-color .15s, background .15s;
+  font-size: .9rem; line-height: 1.45; font-weight: 600;
+}
+.mc-opt:hover { border-color: var(--navy); background: #f7f5f0; }
+.mc-opt input[type="radio"] { margin-top: 3px; accent-color: var(--navy); flex-shrink: 0; }
+.mc-opt.correct { border-color: var(--green); background: var(--green-light); }
+.mc-opt.incorrect { border-color: var(--red); background: var(--red-light); }
+.mc-fb { font-size: .83rem; margin-top: 6px; padding: 7px 12px; border-radius: 4px; display: none; font-weight: 700; }
+.mc-fb.show { display: block; }
+.mc-fb.correct { background: var(--green-light); color: var(--green); }
+.mc-fb.incorrect { background: var(--red-light); color: var(--red); }
+
+/* ── SCAFFOLD ── */
+.scaffold-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: .65rem; text-transform: uppercase; letter-spacing: .13em; color: var(--muted); margin: 20px 0 9px; }
+.frame-btns { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
+.frame-btn {
+  font-family: 'Nunito', sans-serif; font-size: .78rem; font-weight: 700;
+  padding: 5px 13px; border-radius: 5px;
+  border: 1.5px solid var(--border); background: white; color: var(--muted);
+  cursor: pointer; transition: all .15s;
+}
+.frame-btn:hover { border-color: var(--navy); color: var(--navy); }
+.frame-btn.active { background: var(--navy); color: white; border-color: var(--navy); }
+.frame-display {
+  background: var(--blue-light); border: 1px dashed #93c5fd;
+  border-radius: 5px; padding: 10px 13px;
+  font-size: .88rem; color: var(--blue);
+  margin-bottom: 8px; line-height: 1.55; display: none;
+}
+.frame-display.vis { display: block; }
+.scaffold-note { font-size: .73rem; color: var(--muted); font-style: italic; margin-bottom: 5px; display: none; }
+
+textarea {
+  width: 100%; border: 1.5px solid var(--border);
+  border-radius: 6px; padding: 10px 12px;
+  font-family: 'Nunito', sans-serif; font-size: .93rem;
+  line-height: 1.65; resize: vertical; background: white;
+  color: var(--ink); min-height: 80px; transition: border-color .2s;
+  font-weight: 600;
+}
+textarea:focus { outline: none; border-color: var(--navy); }
+textarea.complete { border-color: var(--green); }
+
+/* partner */
+.partner-block {
+  background: var(--purple-light); border: 1px solid #e9d5ff;
+  border-radius: 7px; padding: 15px 17px; margin-top: 13px;
+}
+.partner-block h4 {
+  font-family: 'IBM Plex Mono', monospace; font-size: .67rem;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--purple); margin-bottom: 5px;
+}
+.partner-prompt { font-size: .85rem; color: #4c1d95; margin-bottom: 9px; line-height: 1.5; }
+.partner-prompt-es { font-size: .82rem; color: var(--teal); font-style: italic; margin-bottom: 9px; line-height: 1.5; }
+
+/* divider */
+.divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 28px 0; color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .62rem; letter-spacing: .15em; text-transform: uppercase;
+}
+.divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ── CER ── */
+.cer-card {
+  background: white; border-radius: 10px;
+  border: 2px solid var(--navy); margin-bottom: 36px;
+  overflow: hidden; box-shadow: 0 3px 14px rgba(26,39,68,.1);
+}
+.cer-head { background: linear-gradient(135deg, var(--navy), var(--navy2)); color: white; padding: 18px 26px; }
+.cer-head h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; }
+.cer-head p { font-size: .83rem; color: rgba(255,255,255,.65); margin-top: 4px; line-height: 1.5; }
+.cer-body { padding: 26px; }
+.cer-question {
+  background: #fdf9f3; border-left: 4px solid var(--gold);
+  padding: 13px 17px; border-radius: 0 6px 6px 0;
+  font-size: .96rem; font-weight: 700; margin-bottom: 8px; line-height: 1.55;
+}
+.cer-question-es {
+  background: var(--spanish-bg); border-left: 4px solid var(--teal);
+  padding: 11px 17px; border-radius: 0 6px 6px 0;
+  font-size: .88rem; color: var(--teal); font-style: italic;
+  margin-bottom: 20px; line-height: 1.55;
+}
+.cer-vocab-block {
+  background: var(--blue-light); border: 1px solid #bfdbfe;
+  border-radius: 7px; padding: 13px 15px; margin-bottom: 18px;
+}
+.cer-vocab-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: .63rem; text-transform: uppercase; letter-spacing: .12em; color: var(--blue); margin-bottom: 9px; }
+.cer-vocab-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.cer-chip {
+  font-family: 'Nunito', sans-serif; font-size: .78rem; font-weight: 700;
+  background: white; border: 1px solid #93c5fd;
+  border-radius: 4px; padding: 4px 9px; color: var(--blue); line-height: 1.3;
+}
+.cer-chip .chip-es { font-size: .7rem; color: var(--teal); font-style: italic; font-weight: 400; display: block; }
+
+.cer-part { margin-bottom: 22px; }
+.cer-part-label { display: flex; align-items: center; gap: 9px; margin-bottom: 7px; }
+.cer-badge { font-family: 'Playfair Display', serif; font-size: .72rem; font-weight: 700; padding: 3px 9px; border-radius: 3px; text-transform: uppercase; letter-spacing: .08em; }
+.badge-c { background: var(--navy); color: white; }
+.badge-e { background: var(--red); color: white; }
+.cer-part-name { font-family: 'IBM Plex Mono', monospace; font-size: .73rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.cer-frame {
+  background: var(--orange-light); border: 1px solid #fed7aa;
+  border-radius: 6px; padding: 10px 13px; margin-bottom: 8px;
+  font-size: .85rem; line-height: 1.55; color: #7c2d12;
+}
+.cer-frame strong { color: var(--orange); }
+.cer-frame .frame-es { font-size: .8rem; color: var(--teal); font-style: italic; margin-top: 5px; border-top: 1px solid #fed7aa; padding-top: 5px; }
+
+/* action bar */
+.action-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 11px; margin-top: 22px; }
+.check-btn {
+  font-family: 'Nunito', sans-serif; font-size: .85rem; font-weight: 800;
+  letter-spacing: .04em; padding: 11px 24px; border-radius: 6px;
+  border: none; cursor: pointer; background: var(--navy); color: white;
+  transition: background .2s, transform .1s; display: inline-flex; align-items: center; gap: 7px;
+}
+.check-btn:hover { background: var(--navy2); transform: translateY(-1px); }
+.pdf-btn {
+  font-family: 'Nunito', sans-serif; font-size: .85rem; font-weight: 800;
+  letter-spacing: .04em; padding: 11px 24px; border-radius: 6px;
+  border: none; cursor: pointer; background: var(--red); color: white;
+  transition: background .2s, transform .1s; display: inline-flex; align-items: center; gap: 7px;
+}
+.pdf-btn:hover { background: #9b1515; transform: translateY(-1px); }
+
+/* grade panel */
+.grade-panel { background: white; border: 2px solid var(--border); border-radius: 8px; padding: 20px 24px; margin-top: 22px; display: none; }
+.grade-panel.show { display: block; }
+.grade-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+.grade-score { font-family: 'IBM Plex Mono', monospace; font-size: 1.8rem; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
+.grade-rows { display: flex; flex-direction: column; gap: 6px; }
+.grade-row { display: flex; align-items: center; gap: 9px; font-size: .87rem; padding: 8px 12px; border-radius: 5px; background: #f8f7f4; font-weight: 600; }
+.grade-row.pass { background: var(--green-light); }
+.grade-row.fail { background: var(--red-light); }
+.grade-row .item-name { flex: 1; }
+.grade-row .scaffold-info { font-family: 'IBM Plex Mono', monospace; font-size: .64rem; color: var(--muted); margin-left: auto; }
+
+@media (max-width: 600px) {
+  .site-header { padding: 20px 18px 0; }
+  .student-bar, .progress-wrap { padding-left: 18px; padding-right: 18px; }
+  .main { padding: 22px 13px 56px; }
+  .sec-body, .cer-body { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-badge">🌎 Newcomer Edition / Edición para Nuevos Estudiantes</div>
+    <div class="header-title">The Truman Doctrine</div>
+    <div class="header-subtitle">La Doctrina Truman — March 12, 1947</div>
+    <div class="header-rule"></div>
+    <div class="bilingual-tag">🇺🇸 English &nbsp;·&nbsp; 🇲🇽 Español</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+    <div class="progress-text" id="progressLabel">0 of 6 sections complete</div>
+  </div>
+  <div class="student-bar">
+    <div><label>Student Name / Nombre</label><input type="text" id="studentName" placeholder="Tu nombre" oninput="autoSave()"></div>
+    <div><label>Period / Período</label><input type="text" id="studentPeriod" placeholder="Período" oninput="autoSave()"></div>
+    <div><label>Date / Fecha</label><input type="text" id="studentDate" placeholder="Fecha" oninput="autoSave()"></div>
+  </div>
+</header>
+
+<div class="main">
+
+<!-- CONTEXT -->
+<div class="context-box">
+  <div class="context-en">
+    <div class="context-eyebrow">📜 Background / Contexto</div>
+    <p>After World War II ended in 1945, the world faced a new danger. The Soviet Union was spreading communism — a system where the government controls everything. Greece and Turkey were in danger of becoming communist. In 1947, President Truman asked Congress for help. His speech created a new rule: the United States would help any country fighting against communism. This was called the <em>Truman Doctrine</em>.</p>
+  </div>
+  <div class="context-es">
+    <div class="context-eyebrow">📜 En español</div>
+    <p>Después de que terminó la Segunda Guerra Mundial en 1945, el mundo enfrentó un nuevo peligro. La Unión Soviética estaba extendiendo el comunismo — un sistema donde el gobierno controla todo. Grecia y Turquía estaban en peligro de volverse comunistas. En 1947, el Presidente Truman pidió ayuda al Congreso. Su discurso creó una nueva regla: los Estados Unidos ayudarían a cualquier país que luchara contra el comunismo. Esto se llamó la <em>Doctrina Truman</em>.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SECTION 1 — The Crisis / La Crisis
+══════════════════════════════════════ -->
+<div class="sec-card" id="card-s1">
+  <div class="sec-head">
+    <span class="sec-num">Section 1</span>
+    <h3>The Crisis in Greece <span class="sec-es">/ La crisis en Grecia</span> <span class="completion-dot" id="dot-s1"></span></h3>
+  </div>
+  <div class="sec-body">
+
+    <div class="vocab-eyebrow">📖 Key Words / Palabras Clave</div>
+    <div class="vocab-grid">
+      <div class="vocab-item">
+        <div class="vocab-word">assistance</div>
+        <div class="vocab-en">help given to someone in need</div>
+        <div class="vocab-es">ayuda que se le da a alguien que la necesita</div>
+      </div>
+      <div class="vocab-item">
+        <div class="vocab-word">democracy</div>
+        <div class="vocab-en">a government chosen by the people</div>
+        <div class="vocab-es">un gobierno elegido por el pueblo</div>
+      </div>
+      <div class="vocab-item">
+        <div class="vocab-word">resist</div>
+        <div class="vocab-en">to fight against something</div>
+        <div class="vocab-es">luchar contra algo</div>
+      </div>
+      <div class="vocab-item">
+        <div class="vocab-word">support</div>
+        <div class="vocab-en">to help someone or something</div>
+        <div class="vocab-es">ayudar a alguien o algo</div>
+      </div>
+    </div>
+
+    <!-- MATCH -->
+    <div class="match-container">
+      <div class="match-eyebrow">🔀 Match the word to its meaning — Conecta la palabra con su significado</div>
+      <div class="match-layout">
+        <div>
+          <div class="match-col-label">Words / Palabras</div>
+          <div class="word-bank" id="wb-s1">
+            <div class="drag-word" draggable="true" data-word="assistance" data-section="s1">assistance</div>
+            <div class="drag-word" draggable="true" data-word="democracy" data-section="s1">democracy</div>
+            <div class="drag-word" draggable="true" data-word="resist" data-section="s1">resist</div>
+            <div class="drag-word" draggable="true" data-word="support" data-section="s1">support</div>
+          </div>
+        </div>
+        <div>
+          <div class="match-col-label">Meanings / Significados</div>
+          <div class="def-slots" id="slots-s1">
+            <div class="def-slot" data-answer="democracy">
+              a government chosen by the people
+              <div class="def-slot-es">un gobierno elegido por el pueblo</div>
+            </div>
+            <div class="def-slot" data-answer="support">
+              to help someone or something
+              <div class="def-slot-es">ayudar a alguien o algo</div>
+            </div>
+            <div class="def-slot" data-answer="resistance">
+              to fight against something
+              <div class="def-slot-es">luchar contra algo</div>
+            </div>
+            <div class="def-slot" data-answer="assistance">
+              help given to someone in need
+              <div class="def-slot-es">ayuda que se le da a alguien que la necesita</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="match-reset-btn" onclick="resetMatch('s1')">↺ Reset / Reiniciar</button>
+    </div>
+
+    <!-- PASSAGE — PRE-HIGHLIGHTED -->
+    <div class="passage-wrap">
+      <div class="passage-eyebrow">📄 Read the Speech / Lee el discurso</div>
+      <div class="passage-cols">
+        <div>
+          <span class="passage-lang-tag en-tag">English</span>
+          <div class="passage-en section1-pre">
+            Greece needs <span class="pre-highlight">help</span>. The Greek army is <span class="pre-highlight">small and weak</span>. Greece cannot protect itself. <span class="pre-highlight">The United States must help</span>. I believe the United States should <span class="pre-highlight">support free peoples</span> who are <span class="pre-highlight">fighting against takeover</span> by force.
+          </div>
+        </div>
+        <div>
+          <span class="passage-lang-tag es-tag">Español</span>
+          <div class="passage-es-box">
+            Grecia necesita <span class="pre-highlight">ayuda</span>. El ejército griego es <span class="pre-highlight">pequeño y débil</span>. Grecia no puede protegerse a sí misma. <span class="pre-highlight">Los Estados Unidos deben ayudar</span>. Creo que los Estados Unidos deben <span class="pre-highlight">apoyar a los pueblos libres</span> que están <span class="pre-highlight">luchando contra la toma del poder</span> por la fuerza.
+          </div>
+        </div>
+        <div class="highlight-legend">
+          <span class="legend-swatch"></span>
+          Yellow = important words your teacher highlighted / Amarillo = palabras importantes que tu maestra/o marcó
+        </div>
+      </div>
+    </div>
+
+    <!-- MC -->
+    <div class="questions-eyebrow">📝 Questions / Preguntas</div>
+    <div class="mc-q">
+      <p>1. Why does Greece need help?</p>
+      <p class="mc-q-es">¿Por qué necesita ayuda Grecia?</p>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="s1q1" value="a" onchange="checkMC('s1q1','b')"> <span>A. Greece has too much money. / Grecia tiene demasiado dinero.</span></label>
+        <label class="mc-opt"><input type="radio" name="s1q1" value="b" onchange="checkMC('s1q1','b')"> <span>B. Its army is small and weak. / Su ejército es pequeño y débil.</span></label>
+        <label class="mc-opt"><input type="radio" name="s1q1" value="c" onchange="checkMC('s1q1','b')"> <span>C. Greece asked the Soviets for help. / Grecia le pidió ayuda a los soviéticos.</span></label>
+      </div>
+      <div class="mc-fb" id="fb-s1q1"></div>
+    </div>
+    <div class="mc-q">
+      <p>2. What does Truman want the U.S. to do?</p>
+      <p class="mc-q-es">¿Qué quiere Truman que hagan los EE.UU.?</p>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="s1q2" value="a" onchange="checkMC('s1q2','a')"> <span>A. Help free countries that are being threatened. / Ayudar a los países libres que están siendo amenazados.</span></label>
+        <label class="mc-opt"><input type="radio" name="s1q2" value="b" onchange="checkMC('s1q2','a')"> <span>B. Stay out of other countries' problems. / No meterse en los problemas de otros países.</span></label>
+        <label class="mc-opt"><input type="radio" name="s1q2" value="c" onchange="checkMC('s1q2','a')"> <span>C. Send American soldiers to Greece. / Enviar soldados americanos a Grecia.</span></label>
+      </div>
+      <div class="mc-fb" id="fb-s1q2"></div>
+    </div>
+
+    <!-- SCAFFOLD -->
+    <div class="scaffold-eyebrow">✏️ Main Idea / Idea Principal — What is the most important point? / ¿Cuál es el punto más importante?</div>
+    <div class="frame-btns">
+      <button class="frame-btn" onclick="setFrame('s1','1')" id="fbtn-s1-1">Level 1</button>
+      <button class="frame-btn" onclick="setFrame('s1','2')" id="fbtn-s1-2">Level 2</button>
+      <button class="frame-btn" onclick="setFrame('s1','ind')" id="fbtn-s1-ind">My own / Mi propia</button>
+    </div>
+    <div class="frame-display" id="frame-s1"></div>
+    <div class="scaffold-note" id="snote-s1"></div>
+    <textarea id="mi-s1" placeholder="Write here / Escribe aquí…" rows="3" oninput="onTA('mi-s1','dot-s1')"></textarea>
+
+    <div class="partner-block">
+      <h4>👥 Partner Share / Comparte con un compañero</h4>
+      <p class="partner-prompt">Tell your partner your main idea. Then write what your partner said.</p>
+      <p class="partner-prompt-es">Dile a tu compañero/a tu idea principal. Luego escribe lo que tu compañero/a dijo.</p>
+      <textarea id="partner-s1" placeholder="My partner said / Mi compañero/a dijo…" rows="2" oninput="autoSave()"></textarea>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider">Section 2 / Sección 2</div>
+
+<!-- ══════════════════════════════════════
+     SECTION 2 — Two Ways of Life
+══════════════════════════════════════ -->
+<div class="sec-card" id="card-s2">
+  <div class="sec-head">
+    <span class="sec-num">Section 2</span>
+    <h3>Two Ways of Life <span class="sec-es">/ Dos formas de vivir</span> <span class="completion-dot" id="dot-s2"></span></h3>
+  </div>
+  <div class="sec-body">
+
+    <div class="vocab-eyebrow">📖 Key Words / Palabras Clave</div>
+    <div class="vocab-grid">
+      <div class="vocab-item">
+        <div class="vocab-word">freedom</div>
+        <div class="vocab-en">the right to do and say what you want</div>
+        <div class="vocab-es">el derecho de hacer y decir lo que quieres</div>
+      </div>
+      <div class="vocab-item">
+        <div class="vocab-word">elections</div>
+        <div class="vocab-en">when people vote to choose their leaders</div>
+        <div class="vocab-es">cuando la gente vota para elegir a sus líderes</div>
+      </div>
+      <div class="vocab-item">
+        <div class="vocab-word">oppression</div>
+        <div class="vocab-en">when the government treats people cruelly and unfairly</div>
+        <div class="vocab-es">cuando el gobierno trata a la gente de forma cruel e injusta</div>
+      </div>
+      <div class="vocab-item">
+        <div class="vocab-word">terror</div>
+        <div class="vocab-en">using fear to control people</div>
+        <div class="vocab-es">usar el miedo para controlar a las personas</div>
+      </div>
+    </div>
+
+    <div class="match-container">
+      <div class="match-eyebrow">🔀 Match the word to its meaning / Conecta la palabra con su significado</div>
+      <div class="match-layout">
+        <div>
+          <div class="match-col-label">Words / Palabras</div>
+          <div class="word-bank" id="wb-s2">
+            <div class="drag-word" draggable="true" data-word="freedom" data-section="s2">freedom</div>
+            <div class="drag-word" draggable="true" data-word="elections" data-section="s2">elections</div>
+            <div class="drag-word" draggable="true" data-word="oppression" data-section="s2">oppression</div>
+            <div class="drag-word" draggable="true" data-word="terror" data-section="s2">terror</div>
+          </div>
+        </div>
+        <div>
+          <div class="match-col-label">Meanings / Significados</div>
+          <div class="def-slots" id="slots-s2">
+            <div class="def-slot" data-answer="terror">
+              using fear to control people
+              <div class="def-slot-es">usar el miedo para controlar a las personas</div>
+            </div>
+            <div class="def-slot" data-answer="freedom">
+              the right to do and say what you want
+              <div class="def-slot-es">el derecho de hacer y decir lo que quieres</div>
+            </div>
+            <div class="def-slot" data-answer="oppression">
+              when the government treats people cruelly
+              <div class="def-slot-es">cuando el gobierno trata a la gente de forma cruel</div>
+            </div>
+            <div class="def-slot" data-answer="elections">
+              when people vote to choose their leaders
+              <div class="def-slot-es">cuando la gente vota para elegir a sus líderes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="match-reset-btn" onclick="resetMatch('s2')">↺ Reset / Reiniciar</button>
+    </div>
+
+    <div class="passage-wrap">
+      <div class="passage-eyebrow">📄 Read the Speech / Lee el discurso — Click words that are important / Haz clic en las palabras importantes</div>
+      <div class="passage-cols">
+        <div>
+          <span class="passage-lang-tag en-tag">English — Click important words 👆</span>
+          <div class="passage-clickable" id="clickable-s2"></div>
+          <div class="click-instruction">Click any word to highlight it. Click again to remove. / Haz clic en una palabra para marcarla. Haz clic de nuevo para quitarla.</div>
+        </div>
+        <div>
+          <span class="passage-lang-tag es-tag">Español</span>
+          <div class="passage-es-box">
+            Una forma de vivir se basa en la <strong>voluntad de la mayoría</strong>. Incluye <strong>elecciones libres</strong>, <strong>libertad de expresión</strong> y <strong>libertad de religión</strong>. La segunda forma de vivir se basa en el control de una minoría. Usa el <strong>terror y la opresión</strong>. Las elecciones no son libres. Las libertades personales están prohibidas. Creo que los Estados Unidos deben apoyar la primera forma de vivir.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="justification-block">
+      <h4>🖊️ Why did you click those words? / ¿Por qué hiciste clic en esas palabras?</h4>
+      <p class="es-prompt">Escribe en inglés o español. / Write in English or Spanish.</p>
+      <textarea id="justify-s2" placeholder="I clicked these words because… / Hice clic en estas palabras porque…" rows="3" oninput="autoSave()"></textarea>
+    </div>
+
+    <div class="questions-eyebrow">📝 Questions / Preguntas</div>
+    <div class="mc-q">
+      <p>1. What is the FIRST way of life?</p>
+      <p class="mc-q-es">¿Cuál es la PRIMERA forma de vivir?</p>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="s2q1" value="a" onchange="checkMC('s2q1','b')"> <span>A. The government controls everything. / El gobierno controla todo.</span></label>
+        <label class="mc-opt"><input type="radio" name="s2q1" value="b" onchange="checkMC('s2q1','b')"> <span>B. People have freedom and free elections. / La gente tiene libertad y elecciones libres.</span></label>
+        <label class="mc-opt"><input type="radio" name="s2q1" value="c" onchange="checkMC('s2q1','b')"> <span>C. The press is controlled. / La prensa es controlada.</span></label>
+      </div>
+      <div class="mc-fb" id="fb-s2q1"></div>
+    </div>
+    <div class="mc-q">
+      <p>2. Which way of life does Truman want to support?</p>
+      <p class="mc-q-es">¿Qué forma de vivir quiere apoyar Truman?</p>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="s2q2" value="a" onchange="checkMC('s2q2','a')"> <span>A. The way with freedom and elections. / La forma con libertad y elecciones.</span></label>
+        <label class="mc-opt"><input type="radio" name="s2q2" value="b" onchange="checkMC('s2q2','a')"> <span>B. The way with terror and oppression. / La forma con terror y opresión.</span></label>
+        <label class="mc-opt"><input type="radio" name="s2q2" value="c" onchange="checkMC('s2q2','a')"> <span>C. He does not say which one. / No dice cuál.</span></label>
+      </div>
+      <div class="mc-fb" id="fb-s2q2"></div>
+    </div>
+
+    <div class="scaffold-eyebrow">✏️ Main Idea / Idea Principal</div>
+    <div class="frame-btns">
+      <button class="frame-btn" onclick="setFrame('s2','1')" id="fbtn-s2-1">Level 1</button>
+      <button class="frame-btn" onclick="setFrame('s2','2')" id="fbtn-s2-2">Level 2</button>
+      <button class="frame-btn" onclick="setFrame('s2','ind')" id="fbtn-s2-ind">My own / Mi propia</button>
+    </div>
+    <div class="frame-display" id="frame-s2"></div>
+    <div class="scaffold-note" id="snote-s2"></div>
+    <textarea id="mi-s2" placeholder="Write here / Escribe aquí…" rows="3" oninput="onTA('mi-s2','dot-s2')"></textarea>
+
+    <div class="partner-block">
+      <h4>👥 Partner Share / Comparte con un compañero</h4>
+      <p class="partner-prompt">Tell your partner your main idea. Then write what your partner said.</p>
+      <p class="partner-prompt-es">Dile a tu compañero/a tu idea principal. Luego escribe lo que tu compañero/a dijo.</p>
+      <textarea id="partner-s2" placeholder="My partner said / Mi compañero/a dijo…" rows="2" oninput="autoSave()"></textarea>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider">Section 3 / Sección 3</div>
+
+<!-- ══════════════════════════════════════
+     SECTION 3 — America Must Act
+══════════════════════════════════════ -->
+<div class="sec-card" id="card-s3">
+  <div class="sec-head">
+    <span class="sec-num">Section 3</span>
+    <h3>America Must Act <span class="sec-es">/ América debe actuar</span> <span class="completion-dot" id="dot-s3"></span></h3>
+  </div>
+  <div class="sec-body">
+
+    <div class="vocab-eyebrow">📖 Key Words / Palabras Clave</div>
+    <div class="vocab-grid">
+      <div class="vocab-item">
+        <div class="vocab-word">leadership</div>
+        <div class="vocab-en">guiding and helping others</div>
+        <div class="vocab-es">guiar y ayudar a otros</div>
+      </div>
+      <div class="vocab-item">
+        <div class="vocab-word">poverty</div>
+        <div class="vocab-en">being very poor, not having what you need</div>
+        <div class="vocab-es">ser muy pobre, no tener lo que necesitas</div>
+      </div>
+      <div class="vocab-item">
+        <div class="vocab-word">hope</div>
+        <div class="vocab-en">believing that things can get better</div>
+        <div class="vocab-es">creer que las cosas pueden mejorar</div>
+      </div>
+      <div class="vocab-item">
+        <div class="vocab-word">danger</div>
+        <div class="vocab-en">something that can hurt you or cause harm</div>
+        <div class="vocab-es">algo que puede hacerte daño</div>
+      </div>
+    </div>
+
+    <div class="match-container">
+      <div class="match-eyebrow">🔀 Match the word to its meaning / Conecta la palabra con su significado</div>
+      <div class="match-layout">
+        <div>
+          <div class="match-col-label">Words / Palabras</div>
+          <div class="word-bank" id="wb-s3">
+            <div class="drag-word" draggable="true" data-word="leadership" data-section="s3">leadership</div>
+            <div class="drag-word" draggable="true" data-word="poverty" data-section="s3">poverty</div>
+            <div class="drag-word" draggable="true" data-word="hope" data-section="s3">hope</div>
+            <div class="drag-word" draggable="true" data-word="danger" data-section="s3">danger</div>
+          </div>
+        </div>
+        <div>
+          <div class="match-col-label">Meanings / Significados</div>
+          <div class="def-slots" id="slots-s3">
+            <div class="def-slot" data-answer="hope">
+              believing things can get better
+              <div class="def-slot-es">creer que las cosas pueden mejorar</div>
+            </div>
+            <div class="def-slot" data-answer="danger">
+              something that can hurt or cause harm
+              <div class="def-slot-es">algo que puede hacerte daño</div>
+            </div>
+            <div class="def-slot" data-answer="leadership">
+              guiding and helping others
+              <div class="def-slot-es">guiar y ayudar a otros</div>
+            </div>
+            <div class="def-slot" data-answer="poverty">
+              being very poor, not having what you need
+              <div class="def-slot-es">ser muy pobre, no tener lo que necesitas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="match-reset-btn" onclick="resetMatch('s3')">↺ Reset / Reiniciar</button>
+    </div>
+
+    <div class="passage-wrap">
+      <div class="passage-eyebrow">📄 Read the Speech / Lee el discurso — Click words that are important / Haz clic en las palabras importantes</div>
+      <div class="passage-cols">
+        <div>
+          <span class="passage-lang-tag en-tag">English — Click important words 👆</span>
+          <div class="passage-clickable" id="clickable-s3"></div>
+          <div class="click-instruction">Click any word to highlight it. Click again to remove. / Haz clic en una palabra para marcarla. Haz clic de nuevo para quitarla.</div>
+        </div>
+        <div>
+          <span class="passage-lang-tag es-tag">Español</span>
+          <div class="passage-es-box">
+            Los pueblos libres del mundo nos miran para que los apoyemos. Si no actuamos, el <strong>mundo estará en peligro</strong>. Los gobiernos dictatoriales crecen donde hay <strong>pobreza y sufrimiento</strong>. Crecen cuando la gente <strong>pierde la esperanza</strong> de una vida mejor. <strong>Debemos mantener esa esperanza viva</strong>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="justification-block">
+      <h4>🖊️ Why did you click those words? / ¿Por qué hiciste clic en esas palabras?</h4>
+      <p class="es-prompt">Escribe en inglés o español. / Write in English or Spanish.</p>
+      <textarea id="justify-s3" placeholder="I clicked these words because… / Hice clic en estas palabras porque…" rows="3" oninput="autoSave()"></textarea>
+    </div>
+
+    <div class="questions-eyebrow">📝 Questions / Preguntas</div>
+    <div class="mc-q">
+      <p>1. What helps communism spread, according to Truman?</p>
+      <p class="mc-q-es">¿Qué ayuda a que el comunismo se extienda, según Truman?</p>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="s3q1" value="a" onchange="checkMC('s3q1','c')"> <span>A. Strong armies. / Ejércitos fuertes.</span></label>
+        <label class="mc-opt"><input type="radio" name="s3q1" value="b" onchange="checkMC('s3q1','c')"> <span>B. Too much freedom. / Demasiada libertad.</span></label>
+        <label class="mc-opt"><input type="radio" name="s3q1" value="c" onchange="checkMC('s3q1','c')"> <span>C. Poverty and loss of hope. / Pobreza y pérdida de esperanza.</span></label>
+      </div>
+      <div class="mc-fb" id="fb-s3q1"></div>
+    </div>
+    <div class="mc-q">
+      <p>2. What does Truman say will happen if the U.S. does NOT help?</p>
+      <p class="mc-q-es">¿Qué dice Truman que pasará si EE.UU. NO ayuda?</p>
+      <div class="mc-opts">
+        <label class="mc-opt"><input type="radio" name="s3q2" value="a" onchange="checkMC('s3q2','b')"> <span>A. Greece will fix its own problems. / Grecia resolverá sus propios problemas.</span></label>
+        <label class="mc-opt"><input type="radio" name="s3q2" value="b" onchange="checkMC('s3q2','b')"> <span>B. World peace and U.S. safety will be in danger. / La paz mundial y la seguridad de EE.UU. estarán en peligro.</span></label>
+        <label class="mc-opt"><input type="radio" name="s3q2" value="c" onchange="checkMC('s3q2','b')"> <span>C. The Soviet Union will ask for peace. / La Unión Soviética pedirá paz.</span></label>
+      </div>
+      <div class="mc-fb" id="fb-s3q2"></div>
+    </div>
+
+    <div class="scaffold-eyebrow">✏️ Main Idea / Idea Principal</div>
+    <div class="frame-btns">
+      <button class="frame-btn" onclick="setFrame('s3','1')" id="fbtn-s3-1">Level 1</button>
+      <button class="frame-btn" onclick="setFrame('s3','2')" id="fbtn-s3-2">Level 2</button>
+      <button class="frame-btn" onclick="setFrame('s3','ind')" id="fbtn-s3-ind">My own / Mi propia</button>
+    </div>
+    <div class="frame-display" id="frame-s3"></div>
+    <div class="scaffold-note" id="snote-s3"></div>
+    <textarea id="mi-s3" placeholder="Write here / Escribe aquí…" rows="3" oninput="onTA('mi-s3','dot-s3')"></textarea>
+
+    <div class="partner-block">
+      <h4>👥 Partner Share / Comparte con un compañero</h4>
+      <p class="partner-prompt">Tell your partner your main idea. Then write what your partner said.</p>
+      <p class="partner-prompt-es">Dile a tu compañero/a tu idea principal. Luego escribe lo que tu compañero/a dijo.</p>
+      <textarea id="partner-s3" placeholder="My partner said / Mi compañero/a dijo…" rows="2" oninput="autoSave()"></textarea>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider">Claim · Evidence / Afirmación · Evidencia</div>
+
+<!-- ══════════════════════════════════════
+     CER — Heavily scaffolded (C + E only)
+══════════════════════════════════════ -->
+<div class="cer-card">
+  <div class="cer-head">
+    <h3>Claim &amp; Evidence / Afirmación y Evidencia</h3>
+    <p>Answer the question using words from the speech. / Responde la pregunta usando palabras del discurso.</p>
+  </div>
+  <div class="cer-body">
+
+    <div class="cer-question">Why did Truman think the U.S. should help other countries?</div>
+    <div class="cer-question-es">¿Por qué pensó Truman que EE.UU. debería ayudar a otros países?</div>
+
+    <div class="cer-vocab-block">
+      <div class="cer-vocab-eyebrow">📖 Words to use in your writing / Palabras para usar en tu escritura (use at least 2)</div>
+      <div class="cer-vocab-chips">
+        <div class="cer-chip">assistance<span class="chip-es">ayuda</span></div>
+        <div class="cer-chip">democracy<span class="chip-es">democracia</span></div>
+        <div class="cer-chip">freedom<span class="chip-es">libertad</span></div>
+        <div class="cer-chip">support<span class="chip-es">apoyar</span></div>
+        <div class="cer-chip">danger<span class="chip-es">peligro</span></div>
+        <div class="cer-chip">hope<span class="chip-es">esperanza</span></div>
+        <div class="cer-chip">oppression<span class="chip-es">opresión</span></div>
+        <div class="cer-chip">poverty<span class="chip-es">pobreza</span></div>
+      </div>
+    </div>
+
+    <!-- CLAIM -->
+    <div class="cer-part">
+      <div class="cer-part-label">
+        <span class="cer-badge badge-c">C</span>
+        <span class="cer-part-name">Claim / Afirmación — What do you think? / ¿Qué piensas?</span>
+      </div>
+      <div class="cer-frame">
+        <strong>Frame 1 (easiest):</strong> Truman thought the U.S. should help because ___.<br>
+        <strong>Frame 2:</strong> Truman believed that ___ needed help, so the U.S. should ___.<br>
+        <strong>Frame 3:</strong> According to Truman, the United States had a responsibility to help because ___.<br>
+        <div class="frame-es">
+          <strong>Nivel 1:</strong> Truman pensó que EE.UU. debería ayudar porque ___.<br>
+          <strong>Nivel 2:</strong> Truman creía que ___ necesitaba ayuda, entonces EE.UU. debería ___.<br>
+          <strong>Nivel 3:</strong> Según Truman, los EE.UU. tenían la responsabilidad de ayudar porque ___.
+        </div>
+      </div>
+      <textarea id="cer-claim" placeholder="Truman thought the U.S. should help because… / Truman pensó que EE.UU. debería ayudar porque…" rows="3" oninput="updateProgress(); autoSave()"></textarea>
+    </div>
+
+    <!-- EVIDENCE -->
+    <div class="cer-part">
+      <div class="cer-part-label">
+        <span class="cer-badge badge-e">E</span>
+        <span class="cer-part-name">Evidence / Evidencia — What did the speech say? / ¿Qué dijo el discurso?</span>
+      </div>
+      <div class="cer-frame">
+        <strong>Frame 1 (easiest):</strong> In the speech, Truman said ___.<br>
+        <strong>Frame 2:</strong> Truman's speech shows this because he said ___.<br>
+        <strong>Frame 3:</strong> This is supported by the text where Truman states ___.
+        <div class="frame-es">
+          <strong>Nivel 1:</strong> En el discurso, Truman dijo ___.<br>
+          <strong>Nivel 2:</strong> El discurso de Truman muestra esto porque dijo ___.<br>
+          <strong>Nivel 3:</strong> Esto está apoyado por el texto donde Truman dice ___.
+        </div>
+      </div>
+      <textarea id="cer-evidence" placeholder="In the speech, Truman said… / En el discurso, Truman dijo…" rows="3" oninput="updateProgress(); autoSave()"></textarea>
+    </div>
+
+    <div class="action-bar">
+      <button class="check-btn" onclick="runGrading()">⚖️ Check My Work / Revisa mi trabajo</button>
+      <button class="pdf-btn" onclick="saveToPDF()">📄 Save to PDF</button>
+    </div>
+
+    <div class="grade-panel" id="gradePanel">
+      <div class="grade-title">Completeness Report / Reporte de Completitud</div>
+      <div class="grade-score" id="gradeScore"></div>
+      <div class="grade-rows" id="gradeRows"></div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+// ══════════════════════════════════════════════
+// CLICKABLE WORD PASSAGES
+// ══════════════════════════════════════════════
+const PASSAGES = {
+  s2: "One way of life is based on freedom — free elections, freedom of speech, and freedom of religion. The second way of life is based on control by a small group. It uses terror and oppression. Elections are not free. Personal freedoms are taken away. I believe the United States must support the first way of life.",
+  s3: "Free people around the world look to us for support. If we do not act, we may endanger world peace — and our own nation's safety. Governments that use terror grow in places with poverty and suffering. They grow when people lose hope for a better life. We must keep that hope alive."
+};
+
+const clickedWords = { s2: new Set(), s3: new Set() };
+
+function buildClickablePassage(sec) {
+  const container = document.getElementById('clickable-' + sec);
+  if (!container) return;
+  const words = PASSAGES[sec].split(/(\s+)/);
+  container.innerHTML = '';
+  words.forEach((token, i) => {
+    if (/^\s+$/.test(token)) {
+      container.appendChild(document.createTextNode(token));
+    } else {
+      // Strip punctuation for key but keep display text
+      const span = document.createElement('span');
+      span.className = 'click-word';
+      span.textContent = token;
+      span.dataset.idx = i;
+      span.dataset.sec = sec;
+      span.addEventListener('click', () => toggleWord(span, sec, i));
+      container.appendChild(span);
+    }
+  });
+}
+
+function toggleWord(span, sec, idx) {
+  const key = sec + '_' + idx;
+  if (clickedWords[sec].has(key)) {
+    clickedWords[sec].delete(key);
+    span.classList.remove('highlighted');
+  } else {
+    clickedWords[sec].add(key);
+    span.classList.add('highlighted');
+  }
+  autoSave();
+}
+
+// ══════════════════════════════════════════════
+// SCAFFOLD FRAMES
+// ══════════════════════════════════════════════
+const FRAMES = {
+  s1: {
+    '1': 'Greece needed help because ___. The U.S. decided to ___.',
+    '2': 'In this section, Truman argues that Greece needed assistance because ___. He believed the United States should ___.',
+    'ind': null
+  },
+  s2: {
+    '1': 'Truman described two ways of life. The first way has ___ and the second way has ___.',
+    '2': 'In this section, Truman compared two ways of life. He supported the way with ___ because ___.',
+    'ind': null
+  },
+  s3: {
+    '1': 'Truman warned that if the U.S. did not act, ___.',
+    '2': 'In this section, Truman argued that the U.S. must help because ___. He believed that without help, ___.',
+    'ind': null
+  }
+};
+
+const scaffoldUsed = { s1: null, s2: null, s3: null };
+
+function setFrame(sec, level) {
+  const frame = FRAMES[sec][level];
+  const display = document.getElementById('frame-' + sec);
+  const note = document.getElementById('snote-' + sec);
+  ['1','2','ind'].forEach(l => {
+    const b = document.getElementById('fbtn-' + sec + '-' + l);
+    if (b) b.classList.toggle('active', l === level);
+  });
+  scaffoldUsed[sec] = level;
+  note.style.display = 'block';
+  note.textContent = level === 'ind' ? '📝 Writing independently / Escribiendo de forma independiente'
+    : `📎 Using Level ${level} frame`;
+  if (frame) { display.textContent = '💡 ' + frame; display.classList.add('vis'); }
+  else { display.classList.remove('vis'); }
+  autoSave();
+}
+
+// ══════════════════════════════════════════════
+// DRAG & DROP
+// ══════════════════════════════════════════════
+let dragWord = null, dragSection = null;
+
+function initDrag() {
+  document.querySelectorAll('.drag-word').forEach(el => {
+    el.addEventListener('dragstart', e => {
+      if (el.classList.contains('matched-correct')) { e.preventDefault(); return; }
+      dragWord = el.dataset.word;
+      dragSection = el.dataset.section;
+      el.classList.add('dragging');
+    });
+    el.addEventListener('dragend', () => el.classList.remove('dragging'));
+  });
+
+  document.querySelectorAll('.def-slot').forEach(slot => {
+    slot.addEventListener('dragover', e => { e.preventDefault(); if (!slot.classList.contains('correct')) slot.classList.add('drag-over'); });
+    slot.addEventListener('dragleave', () => slot.classList.remove('drag-over'));
+    slot.addEventListener('drop', e => {
+      e.preventDefault();
+      slot.classList.remove('drag-over');
+      if (!dragWord || slot.classList.contains('correct')) return;
+      const isRight = dragWord === slot.dataset.answer;
+      const old = slot.querySelector('.slot-word-label');
+      if (old) old.remove();
+      const label = document.createElement('span');
+      label.className = 'slot-word-label' + (isRight ? '' : ' wrong-label');
+      label.textContent = dragWord;
+      slot.classList.add(isRight ? 'correct' : 'wrong');
+      slot.prepend(label);
+      const wordEl = document.querySelector(`.drag-word[data-word="${dragWord}"][data-section="${dragSection}"]`);
+      if (wordEl) {
+        if (isRight) { wordEl.classList.add('matched-correct'); wordEl.draggable = false; }
+        else {
+          wordEl.classList.add('matched-wrong');
+          setTimeout(() => {
+            wordEl.classList.remove('matched-wrong');
+            slot.classList.remove('wrong');
+            const l = slot.querySelector('.slot-word-label');
+            if (l) l.remove();
+          }, 800);
+        }
+      }
+      dragWord = null;
+    });
+  });
+}
+
+function resetMatch(section) {
+  document.querySelectorAll(`[data-section="${section}"].drag-word`).forEach(el => {
+    el.classList.remove('matched-correct','matched-wrong','dragging');
+    el.draggable = true;
+  });
+  document.querySelectorAll(`#slots-${section} .def-slot`).forEach(slot => {
+    slot.classList.remove('correct','wrong','drag-over');
+    const label = slot.querySelector('.slot-word-label');
+    if (label) label.remove();
+  });
+}
+
+// ══════════════════════════════════════════════
+// MC
+// ══════════════════════════════════════════════
+function checkMC(name, correct) {
+  const radios = document.querySelectorAll(`input[name="${name}"]`);
+  const fb = document.getElementById('fb-' + name);
+  let selected = null;
+  radios.forEach(r => { r.closest('.mc-opt').classList.remove('correct','incorrect'); if (r.checked) selected = r.value; });
+  radios.forEach(r => { if (r.checked) r.closest('.mc-opt').classList.add(r.value === correct ? 'correct' : 'incorrect'); });
+  if (selected) {
+    fb.classList.add('show');
+    if (selected === correct) { fb.className = 'mc-fb show correct'; fb.textContent = '✓ Correct! / ¡Correcto!'; }
+    else { fb.className = 'mc-fb show incorrect'; fb.textContent = '✗ Try again — re-read the passage. / Intenta de nuevo — vuelve a leer.'; }
+  }
+  autoSave();
+}
+
+// ══════════════════════════════════════════════
+// TEXTAREA / PROGRESS
+// ══════════════════════════════════════════════
+const TOTAL = 6;
+function onTA(id, dotId) {
+  const ta = document.getElementById(id);
+  const dot = document.getElementById(dotId);
+  const ok = ta.value.trim().length >= 10;
+  if (dot) dot.classList.toggle('done', ok);
+  ta.classList.toggle('complete', ok);
+  updateProgress();
+  autoSave();
+}
+function updateProgress() {
+  const ids = ['mi-s1','mi-s2','mi-s3','cer-claim','cer-evidence','justify-s2'];
+  const done = ids.filter(id => { const el = document.getElementById(id); return el && el.value.trim().length >= 10; }).length;
+  document.getElementById('progressBar').style.width = Math.round(done/TOTAL*100)+'%';
+  document.getElementById('progressLabel').textContent = `${done} of ${TOTAL} sections complete`;
+}
+
+// ══════════════════════════════════════════════
+// VOCAB CHECK
+// ══════════════════════════════════════════════
+const CER_VOCAB = ['assistance','democracy','freedom','support','danger','hope','oppression','poverty'];
+function cerVocabCount(text) {
+  const lower = text.toLowerCase();
+  return CER_VOCAB.filter(t => lower.includes(t)).length;
+}
+
+// ══════════════════════════════════════════════
+// GRADING
+// ══════════════════════════════════════════════
+function runGrading() {
+  const items = [
+    { id: 'mi-s1', label: 'Section 1 Main Idea', needsVocab: true, sec: 's1' },
+    { id: 'mi-s2', label: 'Section 2 Main Idea', needsVocab: true, sec: 's2' },
+    { id: 'mi-s3', label: 'Section 3 Main Idea', needsVocab: true, sec: 's3' },
+    { id: 'justify-s2', label: 'Why I highlighted (Sec. 2)', needsVocab: false, sec: null },
+    { id: 'cer-claim', label: 'Claim / Afirmación', needsVocab: false, sec: null },
+    { id: 'cer-evidence', label: 'Evidence / Evidencia', needsVocab: false, sec: null },
+  ];
+  const cerText = ['cer-claim','cer-evidence'].map(id => document.getElementById(id)?.value||'').join(' ');
+  const cerV = cerVocabCount(cerText);
+  let passed = 0;
+  const total = items.length + 1;
+  const results = [];
+
+  items.forEach(f => {
+    const el = document.getElementById(f.id);
+    const val = el ? el.value.trim() : '';
+    const lenOK = val.length >= 10;
+    const vocabOK = !f.needsVocab || cerVocabCount(val) >= 1;
+    const ok = lenOK && vocabOK;
+    if (ok) passed++;
+    const sc = f.sec ? scaffoldUsed[f.sec] : null;
+    results.push({
+      label: f.label, ok,
+      detail: !lenOK ? 'Needs more writing / Necesita más escritura' : (!vocabOK ? 'Add a vocabulary word / Agrega una palabra del vocabulario' : ''),
+      scaffold: sc ? (sc === 'ind' ? 'Independent' : `Level ${sc}`) : ''
+    });
+  });
+
+  const cerVOK = cerV >= 2;
+  if (cerVOK) passed++;
+  results.push({ label: `Vocabulary in CER (2+ words — ${cerV} found)`, ok: cerVOK, detail: cerVOK ? '' : 'Use at least 2 vocabulary words / Usa al menos 2 palabras del vocabulario', scaffold: '' });
+
+  const pct = Math.round(passed/total*100);
+  const score = document.getElementById('gradeScore');
+  score.textContent = `${passed} / ${total} complete (${pct}%)`;
+  score.style.color = pct >= 80 ? 'var(--green)' : pct >= 60 ? 'var(--gold)' : 'var(--red)';
+
+  const rows = document.getElementById('gradeRows');
+  rows.innerHTML = '';
+  results.forEach(r => {
+    const row = document.createElement('div');
+    row.className = 'grade-row ' + (r.ok ? 'pass' : 'fail');
+    row.innerHTML = `<span>${r.ok?'✅':'❌'}</span><span class="item-name">${r.label}${r.detail?' — <em>'+r.detail+'</em>':''}</span>${r.scaffold?`<span class="scaffold-info">${r.scaffold}</span>`:''}`;
+    rows.appendChild(row);
+  });
+  document.getElementById('gradePanel').classList.add('show');
+  document.getElementById('gradePanel').scrollIntoView({ behavior:'smooth', block:'nearest' });
+  autoSave();
+}
+
+// ══════════════════════════════════════════════
+// AUTO SAVE
+// ══════════════════════════════════════════════
+const KEY = 'truman_newcomer_v1';
+function autoSave() {
+  const data = {
+    studentName: document.getElementById('studentName').value,
+    studentPeriod: document.getElementById('studentPeriod').value,
+    studentDate: document.getElementById('studentDate').value,
+    scaffoldUsed: JSON.stringify(scaffoldUsed),
+    fields: {},
+    clicks: { s2: [...clickedWords.s2], s3: [...clickedWords.s3] },
+    mc: getMC(),
+    ts: Date.now()
+  };
+  ['mi-s1','mi-s2','mi-s3','partner-s1','partner-s2','partner-s3','justify-s2','justify-s3','cer-claim','cer-evidence'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data.fields[id] = el.value;
+  });
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function getMC() {
+  const qs = ['s1q1','s1q2','s2q1','s2q2','s3q1','s3q2'];
+  const out = {};
+  qs.forEach(q => { const c = document.querySelector(`input[name="${q}"]:checked`); if(c) out[q]=c.value; });
+  return JSON.stringify(out);
+}
+
+function loadSave() {
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    ['studentName','studentPeriod','studentDate'].forEach(id => { const el = document.getElementById(id); if (el && data[id]) el.value = data[id]; });
+    if (data.fields) Object.entries(data.fields).forEach(([id,val]) => { const el = document.getElementById(id); if(el) el.value=val; });
+    if (data.scaffoldUsed) { const su = JSON.parse(data.scaffoldUsed); ['s1','s2','s3'].forEach(s => { if(su[s]) setFrame(s,su[s]); }); }
+    if (data.clicks) {
+      ['s2','s3'].forEach(sec => {
+        if (data.clicks[sec]) {
+          data.clicks[sec].forEach(key => {
+            clickedWords[sec].add(key);
+            const idx = key.replace(sec+'_','');
+            const span = document.querySelector(`#clickable-${sec} [data-idx="${idx}"]`);
+            if (span) span.classList.add('highlighted');
+          });
+        }
+      });
+    }
+    if (data.mc) {
+      const mc = JSON.parse(data.mc);
+      const correct = { s1q1:'b',s1q2:'a',s2q1:'b',s2q2:'a',s3q1:'c',s3q2:'b' };
+      Object.entries(mc).forEach(([q,val]) => { const r = document.querySelector(`input[name="${q}"][value="${val}"]`); if(r){r.checked=true;checkMC(q,correct[q]);} });
+    }
+    ['s1','s2','s3'].forEach(s => onTA('mi-'+s,'dot-'+s));
+    updateProgress();
+  } catch(e) {}
+}
+
+// ══════════════════════════════════════════════
+// PDF
+// ══════════════════════════════════════════════
+function saveToPDF() {
+  runGrading();
+  const name = document.getElementById('studentName').value || 'Student';
+  const period = document.getElementById('studentPeriod').value || '';
+  const date = document.getElementById('studentDate').value || '';
+  const gradeScoreText = document.getElementById('gradeScore').textContent;
+
+  let gradeRowsHTML = '';
+  document.querySelectorAll('.grade-row').forEach(row => {
+    const check = row.querySelector('span').textContent;
+    const label = row.querySelector('.item-name').textContent;
+    const sc = row.querySelector('.scaffold-info')?.textContent || '';
+    const bg = row.classList.contains('pass') ? '#dcfce7' : '#fee2e2';
+    gradeRowsHTML += `<tr style="background:${bg}"><td style="padding:5px 9px;font-size:13px;">${check}</td><td style="padding:5px 9px;font-size:13px;">${label}</td><td style="padding:5px 9px;font-size:11px;color:#666;">${sc}</td></tr>`;
+  });
+
+  function val(id) {
+    const el = document.getElementById(id);
+    return el?.value?.trim() ? el.value.trim().replace(/</g,'&lt;').replace(/>/g,'&gt;') : '<em style="color:#999">[No response / Sin respuesta]</em>';
+  }
+  function scTag(sec) {
+    const s = scaffoldUsed[sec];
+    if (!s) return '';
+    return s === 'ind' ? ' <span style="font-size:10px;color:#666">[Independent]</span>' : ` <span style="font-size:10px;color:#666">[Level ${s}]</span>`;
+  }
+  function getClicks(sec) {
+    const spans = document.querySelectorAll(`#clickable-${sec} .highlighted`);
+    if (!spans.length) return '<em style="color:#999">[No words highlighted]</em>';
+    return Array.from(spans).map(s => '"'+s.textContent+'"').join(', ');
+  }
+
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Truman Doctrine Newcomer — ${name}</title>
+  <style>
+    body{font-family:Georgia,serif;max-width:800px;margin:0 auto;padding:30px;color:#111;font-size:14px;line-height:1.65}
+    h1{font-size:20px;color:#1a2744;margin-bottom:3px}
+    .eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#c8a444;margin-bottom:12px}
+    .badge{display:inline-block;background:#ea580c;color:white;font-size:10px;font-weight:bold;padding:3px 10px;border-radius:10px;margin-bottom:10px}
+    .meta{display:flex;gap:24px;margin-bottom:18px;font-size:13px}
+    .grade-box{background:#1a2744;color:white;border-radius:8px;padding:18px 22px;margin-bottom:26px}
+    .grade-box h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#c8a444;margin-bottom:7px}
+    .gs{font-size:24px;font-weight:bold;font-family:monospace;margin-bottom:9px}
+    table{width:100%;border-collapse:collapse;margin-top:5px}
+    .sh{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#c8a444;border-bottom:2px solid #1a2744;padding:6px 0 3px;margin:18px 0 8px}
+    .rb{background:#faf7f2;border-left:3px solid #1a2744;padding:8px 12px;margin-bottom:7px;font-size:13px;border-radius:0 4px 4px 0}
+    .rl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#888;margin-bottom:3px}
+    .cb{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:bold}
+    .cc{background:#1a2744;color:white}.ce{background:#b91c1c;color:white}
+    @media print{body{padding:14px}}
+  </style></head><body>
+  <div class="badge">🌎 Newcomer Edition / Edición para Nuevos Estudiantes</div>
+  <div class="eyebrow">Primary Source Close Reading</div>
+  <h1>The Truman Doctrine / La Doctrina Truman</h1>
+  <div class="meta"><span><strong>Name:</strong> ${name}</span><span><strong>Period:</strong> ${period}</span><span><strong>Date:</strong> ${date}</span></div>
+  <div class="grade-box"><h2>⚖️ Completeness / Completitud</h2><div class="gs">${gradeScoreText}</div><table>${gradeRowsHTML}</table></div>
+  <div class="sh">Section 1 — The Crisis in Greece / La crisis en Grecia</div>
+  <div class="rb"><div class="rl">Main Idea ${scTag('s1')}</div>${val('mi-s1')}</div>
+  <div class="rb"><div class="rl">Partner Share</div>${val('partner-s1')}</div>
+  <div class="sh">Section 2 — Two Ways of Life / Dos formas de vivir</div>
+  <div class="rb"><div class="rl">Words I highlighted / Palabras que marqué</div>${getClicks('s2')}</div>
+  <div class="rb"><div class="rl">Why I highlighted them</div>${val('justify-s2')}</div>
+  <div class="rb"><div class="rl">Main Idea ${scTag('s2')}</div>${val('mi-s2')}</div>
+  <div class="rb"><div class="rl">Partner Share</div>${val('partner-s2')}</div>
+  <div class="sh">Section 3 — America Must Act / América debe actuar</div>
+  <div class="rb"><div class="rl">Words I highlighted / Palabras que marqué</div>${getClicks('s3')}</div>
+  <div class="rb"><div class="rl">Why I highlighted them</div>${val('justify-s3')}</div>
+  <div class="rb"><div class="rl">Main Idea ${scTag('s3')}</div>${val('mi-s3')}</div>
+  <div class="rb"><div class="rl">Partner Share</div>${val('partner-s3')}</div>
+  <div class="sh">Claim &amp; Evidence / Afirmación y Evidencia</div>
+  <div class="rb"><div class="rl"><span class="cb cc">C</span> Claim / Afirmación</div>${val('cer-claim')}</div>
+  <div class="rb"><div class="rl"><span class="cb ce">E</span> Evidence / Evidencia</div>${val('cer-evidence')}</div>
+  <script>window.onload=function(){window.print();}<\/script>
+  </body></html>`;
+
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const w = window.open(url, '_blank');
+  if (!w) alert('Please allow popups / Por favor permite ventanas emergentes');
+}
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  buildClickablePassage('s2');
+  buildClickablePassage('s3');
+  initDrag();
+  loadSave();
+  updateProgress();
+});
+</script>
+</body>
+</html>
